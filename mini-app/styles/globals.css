@@ -1,0 +1,308 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-gray-900 text-gray-100;
+    overflow-x: hidden;
+  }
+  
+  /* Telegram Web App specific styles */
+  .telegram-webapp {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Safe area insets for notched devices */
+  .safe-area-inset-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-inset-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-area-inset-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  /* Button styles */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-700 text-gray-100 hover:bg-gray-600 focus:ring-gray-500 active:scale-95;
+  }
+  
+  .btn-accent {
+    @apply bg-accent-600 text-white hover:bg-accent-700 focus:ring-accent-500 active:scale-95;
+  }
+  
+  .btn-success {
+    @apply bg-success-600 text-white hover:bg-success-700 focus:ring-success-500 active:scale-95;
+  }
+  
+  .btn-warning {
+    @apply bg-warning-600 text-white hover:bg-warning-700 focus:ring-warning-500 active:scale-95;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-gray-300 hover:bg-gray-800 hover:text-white focus:ring-gray-500 active:scale-95;
+  }
+  
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+  
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-gray-800 rounded-xl border border-gray-700 shadow-xl;
+  }
+  
+  .card-header {
+    @apply px-6 py-4 border-b border-gray-700;
+  }
+  
+  .card-body {
+    @apply px-6 py-4;
+  }
+  
+  .card-footer {
+    @apply px-6 py-4 border-t border-gray-700;
+  }
+  
+  /* Input styles */
+  .input {
+    @apply w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors;
+  }
+  
+  /* Progress bar styles */
+  .progress-bar {
+    @apply w-full bg-gray-700 rounded-full h-2 overflow-hidden;
+  }
+  
+  .progress-fill {
+    @apply h-full bg-primary-600 rounded-full transition-all duration-300 ease-out;
+  }
+  
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply bg-primary-100 text-primary-800;
+  }
+  
+  .badge-secondary {
+    @apply bg-gray-100 text-gray-800;
+  }
+  
+  .badge-success {
+    @apply bg-success-100 text-success-800;
+  }
+  
+  .badge-warning {
+    @apply bg-warning-100 text-warning-800;
+  }
+  
+  .badge-accent {
+    @apply bg-accent-100 text-accent-800;
+  }
+  
+  /* Loading spinner */
+  .spinner {
+    @apply animate-spin rounded-full border-2 border-gray-600 border-t-primary-600;
+  }
+  
+  /* Game-specific styles */
+  .game-button {
+    @apply relative overflow-hidden group;
+  }
+  
+  .game-button::before {
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 -translate-x-full transition-all duration-700;
+    content: '';
+  }
+  
+  .game-button:hover::before {
+    @apply translate-x-full;
+  }
+  
+  /* Tap animation */
+  .tap-effect {
+    @apply absolute pointer-events-none;
+    animation: tapPulse 0.6s ease-out;
+  }
+  
+  /* Glow effect */
+  .glow-effect {
+    @apply shadow-glow;
+  }
+  
+  .glow-effect-lg {
+    @apply shadow-glow-lg;
+  }
+  
+  /* Floating animation */
+  .floating {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Pulse animation */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  }
+  
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+  
+  /* Scrollbar styles */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(75 85 99) rgb(31 41 55);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgb(31 41 55);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(75 85 99);
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(107 114 128);
+  }
+}
+
+/* Animation keyframes */
+@keyframes tapPulse {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 640px) {
+  .telegram-webapp {
+    font-size: 14px;
+  }
+  
+  .btn {
+    @apply px-3 py-2 text-sm;
+  }
+  
+  .card {
+    @apply rounded-lg;
+  }
+  
+  .card-header,
+  .card-body,
+  .card-footer {
+    @apply px-4 py-3;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .telegram-webapp {
+    @apply bg-gray-900 text-gray-100;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    @apply border-2 border-gray-500;
+  }
+  
+  .btn {
+    @apply border-2;
+  }
+  
+  .btn-primary {
+    @apply border-blue-400;
+  }
+  
+  .btn-secondary {
+    @apply border-gray-400;
+  }
+}

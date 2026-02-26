@@ -1,0 +1,46 @@
+{
+  "name": "people-power-journey",
+  "version": "1.0.0",
+  "description": "Viral Telegram Play-to-Earn Game - A story-driven Mini-App for community building and leadership",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:bot\" \"npm run dev:api\" \"npm run dev:mini-app\"",
+    "dev:bot": "cd bot && npm run dev",
+    "dev:api": "cd api && npm run dev",
+    "dev:mini-app": "cd mini-app && npm run dev",
+    "build": "npm run build:mini-app && npm run build:api",
+    "build:mini-app": "cd mini-app && npm run build",
+    "build:api": "cd api && npm run build",
+    "start": "npm run start:api",
+    "start:api": "cd api && npm start",
+    "setup": "npm install && cd bot && npm install && cd ../api && npm install && cd ../mini-app && npm install",
+    "db:migrate": "cd database && npm run migrate",
+    "db:seed": "cd database && npm run seed"
+  },
+  "keywords": [
+    "telegram",
+    "play-to-earn",
+    "game",
+    "mini-app",
+    "community",
+    "viral",
+    "africa",
+    "leadership",
+    "storytelling"
+  ],
+  "author": "People Power Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "bot",
+    "api",
+    "mini-app",
+    "shared",
+    "database"
+  ],
+  "dependencies": {
+    "next": "^14.2.35"
+  }
+}

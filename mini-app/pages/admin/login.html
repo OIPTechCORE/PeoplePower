@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Login - PEOPLE POWER</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            color: #4f46e5;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .credentials-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f3f4f6;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .credentials-info h3 {
+            color: #4f46e5;
+            margin-bottom: 0.5rem;
+        }
+
+        .credentials-info code {
+            background: #e5e7eb;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .error {
+            color: #ef4444;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: #fef2f2;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .success {
+            color: #10b981;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: #f0fdf4;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>👑 PEOPLE POWER</h1>
+            <p>Super Admin Dashboard</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="adminId">Admin ID</label>
+                <input type="text" id="adminId" value="admin_001" required>
+            </div>
+
+            <div class="form-group">
+                <label for="authToken">Session Token</label>
+                <input type="text" id="authToken" value="super_admin_session_token_12345" required>
+            </div>
+
+            <div class="form-group">
+                <label for="biometricToken">Biometric Hash</label>
+                <input type="text" id="biometricToken" value="biometric_hash_secure_67890" required>
+            </div>
+
+            <button type="submit" class="login-btn">🚀 Access Dashboard</button>
+        </form>
+
+        <div id="message"></div>
+
+        <div class="credentials-info">
+            <h3>📋 Default Credentials:</h3>
+            <p><strong>Admin ID:</strong> <code>admin_001</code></p>
+            <p><strong>Session Token:</strong> <code>super_admin_session_token_12345</code></p>
+            <p><strong>Biometric Hash:</strong> <code>biometric_hash_secure_67890</code></p>
+            <p><em>These are pre-configured for development. Change in production!</em></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const adminId = document.getElementById('adminId').value;
+            const authToken = document.getElementById('authToken').value;
+            const biometricToken = document.getElementById('biometricToken').value;
+            const messageDiv = document.getElementById('message');
+
+            // Store credentials in sessionStorage for the dashboard
+            sessionStorage.setItem('adminCredentials', JSON.stringify({
+                adminId,
+                authToken,
+                biometricToken
+            }));
+
+            // Redirect to dashboard
+            window.location.href = '/admin/super-futuristic';
+        });
+    </script>
+</body>
+</html>
