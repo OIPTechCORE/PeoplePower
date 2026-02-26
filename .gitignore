@@ -269,3 +269,7 @@ static/uploads/
 
 # IMPORTANT: Allow docker-compose.yml for deployment
 !docker-compose.yml
+
+# IMPORTANT: Allow GitHub Actions workflows
+!.github/
+!.github/workflows/
