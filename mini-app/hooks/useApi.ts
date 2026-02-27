@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../lib/api';
-import { useGame } from './GameContext';
+import { useGame } from '../context/GameContext';
 
 // Custom hooks for game data fetching and mutations
 
@@ -11,14 +11,6 @@ export const useProfile = () => {
   return useQuery({
     queryKey: ['profile'],
     queryFn: () => api.game.getProfile(),
-    onSuccess: (data) => {
-      if (data.success && data.data) {
-        dispatch({ type: 'SET_PLAYER', payload: data.data });
-      }
-    },
-    onError: (error) => {
-      console.error('Failed to fetch profile:', error);
-    },
   });
 };
 
