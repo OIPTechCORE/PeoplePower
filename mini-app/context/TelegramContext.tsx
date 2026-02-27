@@ -48,26 +48,42 @@ export const TelegramProvider: React.FC<TelegramProviderProps> = ({ children }) 
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize Telegram Web App
+    // Initialize Telegram Web App with lazy loading
     if (typeof window !== 'undefined' && (window as any).Telegram) {
       setIsLoading(true);
-      const telegramWebApp = (window as any).Telegram.WebApp;
-      telegramWebApp.ready();
       
-      setWebApp(telegramWebApp);
-      setUser(telegramWebApp.initDataUnsafe?.user || null);
-      setInitData(telegramWebApp.initData || null);
-      setIsReady(true);
-      setIsLoading(false);
-
-      // Configure Web App
-      telegramWebApp.expand();
-      telegramWebApp.setHeaderColor('#1f2937');
-      telegramWebApp.setBackgroundColor('#111827');
+      // Create WebApp instance
+      const telegramWebApp = (window as any).Telegram.WebApp;
+      
+      // Initialize with loading state
+      telegramWebApp.ready().then(() => {
+        console.log('Telegram WebApp initialized');
+        
+        // Set WebApp instance
+        setWebApp(telegramWebApp);
+        
+        // Set user data
+        setUser(telegramWebApp.initDataUnsafe?.user || null);
+        setInitData(telegramWebApp.initData || null);
+        
+        // Configure Web App
+        telegramWebApp.expand();
+        telegramWebApp.setHeaderColor('#1f2937');
+        telegramWebApp.setBackgroundColor('#111827');
+        
+        // Set ready state
+        setIsReady(true);
+        setIsLoading(false);
+      }).catch((error) => {
+        console.error('Failed to initialize Telegram WebApp:', error);
+        setIsLoading(false);
+      });
     } else {
+      // Handle case where Telegram is not available
       setIsLoading(false);
+      console.warn('Telegram WebApp not available');
     }
-  }, []);
+  }, [webApp, setWebApp, user, setUser, setInitData, isReady, isLoading, setIsLoading]);
 
   const value: TelegramContextType = {
     webApp,

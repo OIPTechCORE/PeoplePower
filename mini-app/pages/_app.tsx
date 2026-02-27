@@ -18,14 +18,41 @@ const queryClient = new QueryClient({
       retry: 1,
     },
   },
+});
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  // Get loading and error states from contexts
+  const { isLoading, error } = useQuery('peoplePowerJourney', {
+    queryKey: ['appState'],
+    queryFn: async () => {
+      // Simulate initial app loading
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return { success: true, data: { initialized: true } };
+    },
+  });
+
   return (
     <QueryClientProvider client={queryClient}>
       <TelegramProvider>
         <GameProvider>
           <div className="telegram-webapp">
             <Component {...pageProps} />
+            
+            {/* Lazy Loading State */}
+            {isLoading && (
+              <div className="loading-overlay">
+                <div className="loading-spinner"></div>
+                <div className="loading-text">Loading People Power Journey...</div>
+              </div>
+            )}
+            
+            {/* Error State */}
+            {error && (
+              <div className="error-overlay">
+                <div className="error-message">Error: {error.message}</div>
+              </div>
+            )}
+            
             <Toaster
               position="top-center"
               toastOptions={{

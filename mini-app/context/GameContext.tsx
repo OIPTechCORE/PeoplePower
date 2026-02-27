@@ -32,6 +32,7 @@ interface GameState {
   player: Player | null;
   isLoading: boolean;
   error: string | null;
+  isInitialized: boolean;
 }
 
 type GameAction =
@@ -44,12 +45,13 @@ const initialState: GameState = {
   player: null,
   isLoading: false,
   error: null,
+  isInitialized: false,
 };
 
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case 'SET_PLAYER':
-      return { ...state, player: action.payload, isLoading: false };
+      return { ...state, player: action.payload, isLoading: false, isInitialized: true };
     case 'SET_LOADING':
       return { ...state, isLoading: action.payload };
     case 'SET_ERROR':
