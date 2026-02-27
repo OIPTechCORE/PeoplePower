@@ -26,6 +26,7 @@ import tonRoutes from './ton';
 import superAdminRoutes from './superAdmin';
 import infinityRoutes from './infinity';
 import unifiedMarketplaceRoutes from './unifiedMarketplace';
+import peoplePowerRoutes from './peoplePower';
 import { pool } from '../database/connection';
 import { CacheService } from '../services/cacheService';
 
@@ -72,6 +73,7 @@ router.use(`${API_VERSION}/ton`, tonRoutes);
 router.use(`${API_VERSION}/admin`, superAdminRoutes);
 router.use(`${API_VERSION}/infinity`, infinityRoutes);
 router.use(`${API_VERSION}/marketplace`, unifiedMarketplaceRoutes);
+router.use(`${API_VERSION}/people-power`, peoplePowerRoutes);
 
 // API documentation
 router.get('/', (req, res) => {
