@@ -48,6 +48,54 @@ export const schemas = {
 
   // Game action validations
   gameAction: [
+    body('action')
+      .notEmpty()
+      .withMessage('Action is required'),
+    body('data')
+      .optional()
+      .isObject()
+      .withMessage('Data must be an object')
+  ],
+
+  // TON Payment validations
+  tonPayment: [
+    body('userAddress')
+      .notEmpty()
+      .isEthereumAddress()
+      .withMessage('Valid Ethereum address is required'),
+    body('amount')
+      .notEmpty()
+      .isNumeric()
+      .withMessage('Amount must be a number'),
+    body('paymentType')
+      .optional()
+      .isIn(['game_payment', 'stake_payment', 'gift_payment', 'marketplace_payment'])
+      .withMessage('Invalid payment type')
+  ],
+
+  tonStake: [
+    body('amount')
+      .notEmpty()
+      .isNumeric()
+      .withMessage('Amount must be a number')
+  ],
+
+  tonUnstake: [
+    body('amount')
+      .notEmpty()
+      .isNumeric()
+      .withMessage('Amount must be a number')
+  ],
+
+  tonEstimateGas: [
+    body('functionName')
+      .notEmpty()
+      .withMessage('Function name is required'),
+    body('args')
+      .optional()
+      .isArray()
+      .withMessage('Args must be an array')
+  ],
     body('type')
       .isIn(['tap', 'mission_complete', 'story_progress', 'social_action', 'mini_game'])
       .withMessage('Invalid game action type'),

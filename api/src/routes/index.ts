@@ -22,6 +22,7 @@ import { createGameRoutes } from './game';
 import { createSocialRoutes } from './social';
 import { createEconomyRoutes } from './economy';
 import { createChatRoutes } from './chat';
+import tonRoutes from './ton';
 import { pool } from '../database/connection';
 import { CacheService } from '../services/cacheService';
 
@@ -64,6 +65,7 @@ router.use(`${API_VERSION}/game`, createGameRoutes(pool, cacheService));
 router.use(`${API_VERSION}/social`, createSocialRoutes(pool));
 router.use(`${API_VERSION}/economy`, createEconomyRoutes(pool));
 router.use(`${API_VERSION}/chat`, createChatRoutes(pool));
+router.use(`${API_VERSION}/ton`, tonRoutes);
 
 // API documentation
 router.get('/', (req, res) => {
