@@ -24,6 +24,7 @@ import { createEconomyRoutes } from './economy';
 import { createChatRoutes } from './chat';
 import tonRoutes from './ton';
 import superAdminRoutes from './superAdmin';
+import infinityRoutes from './infinity';
 import { pool } from '../database/connection';
 import { CacheService } from '../services/cacheService';
 
@@ -68,6 +69,7 @@ router.use(`${API_VERSION}/economy`, createEconomyRoutes(pool));
 router.use(`${API_VERSION}/chat`, createChatRoutes(pool));
 router.use(`${API_VERSION}/ton`, tonRoutes);
 router.use(`${API_VERSION}/admin`, superAdminRoutes);
+router.use(`${API_VERSION}/infinity`, infinityRoutes);
 
 // API documentation
 router.get('/', (req, res) => {
