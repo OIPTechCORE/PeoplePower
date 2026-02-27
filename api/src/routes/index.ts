@@ -23,6 +23,7 @@ import { createSocialRoutes } from './social';
 import { createEconomyRoutes } from './economy';
 import { createChatRoutes } from './chat';
 import tonRoutes from './ton';
+import superAdminRoutes from './superAdmin';
 import { pool } from '../database/connection';
 import { CacheService } from '../services/cacheService';
 
@@ -66,6 +67,7 @@ router.use(`${API_VERSION}/social`, createSocialRoutes(pool));
 router.use(`${API_VERSION}/economy`, createEconomyRoutes(pool));
 router.use(`${API_VERSION}/chat`, createChatRoutes(pool));
 router.use(`${API_VERSION}/ton`, tonRoutes);
+router.use(`${API_VERSION}/admin`, superAdminRoutes);
 
 // API documentation
 router.get('/', (req, res) => {
